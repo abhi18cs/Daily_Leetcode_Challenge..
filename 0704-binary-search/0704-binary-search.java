@@ -11,7 +11,6 @@ class Solution {
                 return m;
             if(nums[m]>target) h=m-1;
             else {
-               
                 l=m+1;
             }
         }
