@@ -1,56 +1,55 @@
-class Trie {
-    node main;
-    private class node{
-        boolean endOfWord;
-        node[] characters;
-        public node(){
-            endOfWord = false;
-            characters = new node[26];
-            for(int i=0; i<26; i++){
-                characters[i] = null;
-            }
-        }
+class TriNode {
+    TriNode[] children=new TriNode[26]; //array to store all alphabets
+    boolean isEnd=false;
+}
+class Trie{
+    TriNode root;
+    public Trie() { //constructor
+        root=new TriNode();
     }
 
-    public Trie() {
-        main = new node();
-    }
     
-    public void insert(String word){
-        node curr = main;
-        for(int i=0;i<word.length(); i++){
-            int ind = word.charAt(i) - 'a';
-            if(curr.characters[ind]!=null){
-                curr = curr.characters[ind];
-            } else {
-                curr.characters[ind] = new node();
-                curr = curr.characters[ind];
+    public void insert(String word) {
+        TriNode node=root;
+        for(int i=0;i<word.length();i++){
+            char c=word.charAt(i);
+            if(node.children[c-'a']==null){
+                node.children[c-'a']=new TriNode();
             }
+            node=node.children[c-'a'];
         }
-        curr.endOfWord = true;
+        node.isEnd=true;
     }
     
-    public boolean search(String word){
-        node curr = main;
-        for(int i=0; i<word.length(); i++){
-            int ind = word.charAt(i)-'a';
-            if(curr.characters[ind] == null){
+    public boolean search(String word) {
+        TriNode node=root;
+        for(int i=0;i<word.length();i++){
+            char c=word.charAt(i);
+            if(node.children[c-'a']==null){
                 return false;
             }
-            curr = curr.characters[ind];
+            node=node.children[c-'a'];
         }
-        return curr.endOfWord;
+        return node.isEnd;
     }
     
     public boolean startsWith(String prefix) {
-        node curr = main;
-        for(int i=0; i<prefix.length(); i++){
-            int ind = prefix.charAt(i)-'a';
-            if(curr.characters[ind] == null){
+        TriNode node=root;
+        for(int i=0;i<prefix.length();i++){
+            char c=prefix.charAt(i);
+            if(node.children[c-'a']==null){
                 return false;
             }
-            curr = curr.characters[ind];
+            node=node.children[c-'a'];
         }
         return true;
     }
 }
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie obj = new Trie();
+ * obj.insert(word);
+ * boolean param_2 = obj.search(word);
+ * boolean param_3 = obj.startsWith(prefix);
+ */
