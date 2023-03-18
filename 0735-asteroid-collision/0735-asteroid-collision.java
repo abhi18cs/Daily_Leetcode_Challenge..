@@ -1,3 +1,4 @@
+//Approach -1 Tc==O(n) Sc=O(n) where n is the number of asteroids in the input array
 class Solution {
     public int[] asteroidCollision(int[] asteroids) {
         Stack<Integer> stack = new Stack<>();
