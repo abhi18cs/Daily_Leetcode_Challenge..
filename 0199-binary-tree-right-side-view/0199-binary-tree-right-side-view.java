@@ -25,7 +25,7 @@ class Solution{
         Queue<TreeNode> queue=new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty()){
-            int size=queue.size();
+            int size=queue.size();// store the number of nodes of current layer
             TreeNode node=null;
             while(size>0){
                 node=queue.poll();
@@ -39,7 +39,7 @@ class Solution{
                 }
                 size--;
             }
-            ans.add(node.val);
+            ans.add(node.val);// add the val of last node
         }
         return ans;
     }
