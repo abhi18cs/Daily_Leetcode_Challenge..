@@ -16,6 +16,7 @@
 //     }
 // }
 
+//Approach-2 Using array Tc=O(n) Sc=O(n)
 class Solution {
     public int numRescueBoats(int[] people, int limit) {
         int[] map = new int[limit + 1];
