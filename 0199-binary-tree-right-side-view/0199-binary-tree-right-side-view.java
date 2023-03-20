@@ -1,19 +1,18 @@
-public class Solution {
+//Approach-1 Using DFS(RECURSIVE) 
+class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        Queue<TreeNode> queue = new LinkedList<>();
-        List<Integer> rst = new ArrayList<>();
-        if(root == null) return rst;
+        ArrayList<Integer> ans=new ArrayList<>();
+        helper(root,ans,0);
+        return ans;
         
-        queue.offer(root);
-        while(!queue.isEmpty()){
-            int levelNum = queue.size();
-            for(int i = 0; i < levelNum; i++){
-                if(queue.peek().left != null) queue.offer(queue.peek().left);
-                if(queue.peek().right != null) queue.offer(queue.peek().right);
-                if(i == levelNum - 1) rst.add(queue.poll().val);
-                else queue.poll();
+    }
+    public void helper(TreeNode root,List<Integer> list,int depth){
+        if(root!=null){
+            if(depth==list.size()){
+                list.add(root.val);
             }
+            helper(root.right,list,depth+1);
+            helper(root.left,list,depth+1);
         }
-        return rst;
     }
 }
