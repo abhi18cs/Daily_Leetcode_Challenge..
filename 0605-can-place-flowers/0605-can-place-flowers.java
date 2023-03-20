@@ -1,3 +1,4 @@
+//Approach-1 Using Greedy Tc=O(n) Sc=O(1)
 class Solution {
     public boolean canPlaceFlowers(int[] nums, int n) {
         
