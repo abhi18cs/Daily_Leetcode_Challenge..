@@ -1,3 +1,4 @@
+//Approach-1 Tc=O(n) Sc=O(1)
 class Solution {
     public int climbStairs(int n) {
     // base cases
