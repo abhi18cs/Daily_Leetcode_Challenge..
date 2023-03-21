@@ -1,0 +1,11 @@
+//Approach-1 Using Recursion Tc=O(n) Sc=O()
+class Solution {
+    ArrayList<Integer> list=new ArrayList<>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if(root==null) return list;
+        list.add(root.val);
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
+        return list;
+    }
+}
