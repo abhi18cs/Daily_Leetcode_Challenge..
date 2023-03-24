@@ -1,17 +1,15 @@
 class Solution {
-    int count = 0;
+    int count=0;
     public int goodNodes(TreeNode root) {
-        countGood(root, root.val);
+        count(root,root.val);
         return count;
     }
-    public void countGood(TreeNode root, int max) {
-        if (root == null)
-            return;
-        if (root.val >= max)
-            count ++;
-        max = Math.max(root.val, max);
-        
-        countGood(root.right, max);
-        countGood(root.left, max);
+    public void count(TreeNode root,int max){
+        if(root==null) return ;
+        if(root.val>=max) 
+            count++;
+            max=Math.max(max,root.val);
+        count(root.left,max);
+        count(root.right,max);
     }
 }
