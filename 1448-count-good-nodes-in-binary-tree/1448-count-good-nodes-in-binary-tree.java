@@ -10,7 +10,8 @@ class Solution {
         if (root.val >= max)
             count ++;
         max = Math.max(root.val, max);
-        countGood(root.left, max);
+        
         countGood(root.right, max);
+        countGood(root.left, max);
     }
 }
