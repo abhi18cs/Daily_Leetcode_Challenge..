@@ -16,7 +16,7 @@ class Solution {
                 TreeNode min =root.right;
                 while(min.left!=null) min=min.left;
                 root.val=min.val;
-                root.right=deleteNode(root.right,min.val);
+                root.right=deleteNode(root.right,root.val);
                 return root;
             }
         }
