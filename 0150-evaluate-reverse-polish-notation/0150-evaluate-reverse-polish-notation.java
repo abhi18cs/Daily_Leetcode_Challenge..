@@ -4,15 +4,20 @@ public class Solution {
 		Stack<Integer> S = new Stack<Integer>();
 		for (String s : tokens) {
 			if(s.equals("+")) {
-				S.add(S.pop()+S.pop());
-			}
+				//S.add(S.pop()+S.pop());
+                b = S.pop();
+				a = S.pop();
+				S.add(a + b);			
+            }
 			else if(s.equals("/")) {
 				b = S.pop();
 				a = S.pop();
 				S.add(a / b);
 			}
 			else if(s.equals("*")) {
-				S.add(S.pop() * S.pop());
+				b = S.pop();
+				a = S.pop();
+				S.add(a * b);
 			}
 			else if(s.equals("-")) {
 				b = S.pop();
