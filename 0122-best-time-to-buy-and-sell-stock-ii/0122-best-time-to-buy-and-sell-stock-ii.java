@@ -1,17 +1,18 @@
 //https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/discuss/1569081/Java-Simple-and-Clean-DP-solutions-for-all-6-Buy-and-Sell-Stock-questions-on-LeetCode
+//Approach-1 iterative BruteForce Tc=O(n2) Sc=O(1)
 class Solution {
     public int maxProfit(int[] prices) {
     int n = prices.length;
-            int maxProfit=0;
-            int sum=0;
-            for(int i=0; i<n; i++){
-                for(int j=i+1; j<n && prices[j]>prices[i]; j++){
-                    sum += prices[j]-prices[i];
-                    if(sum>maxProfit)
-                        maxProfit = sum;
+    int maxProfit=0;
+    int sum=0;
+    for(int i=0; i<n; i++){
+        for(int j=i+1; j<n && prices[j]>prices[i]; j++){
+            sum += prices[j]-prices[i];
+            if(sum>maxProfit)
+                maxProfit = sum;
                     break;
-                }
             }
+        }
             return maxProfit;
     }
 }
