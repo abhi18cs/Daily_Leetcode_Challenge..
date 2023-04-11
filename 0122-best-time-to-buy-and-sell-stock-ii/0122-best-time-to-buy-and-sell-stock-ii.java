@@ -8,11 +8,12 @@ class Solution {
     for(int i=0; i<n; i++){
         for(int j=i+1; j<n && prices[j]>prices[i]; j++){
             sum += prices[j]-prices[i];
-            if(sum>maxProfit)
+            if(sum>maxProfit){
                 maxProfit = sum;
                     break;
             }
         }
+    }
             return maxProfit;
     }
 }
