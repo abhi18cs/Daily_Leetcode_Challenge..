@@ -32,7 +32,7 @@
 //         return op; // return op 
 //     }
 // }
-
+//Approach-3 Using DP(remambering the past) tc=O(n) sc=O(1)
 class Solution {
      public int maxProfit(int[] prices) {
          int min=prices[0];
