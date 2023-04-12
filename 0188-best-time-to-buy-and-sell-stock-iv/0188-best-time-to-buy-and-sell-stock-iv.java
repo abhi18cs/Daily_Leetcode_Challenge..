@@ -1,16 +1,26 @@
 class Solution {
     public int maxProfit(int k, int[] prices) {
-       int profit[] = new int[k];
-       int cost[] = new int[k];
-       Arrays.fill(cost, Integer.MAX_VALUE);
-       for(int currPrice : prices){
-            cost[0] = Math.min(cost[0], currPrice);
-            profit[0] = Math.max(profit[0], currPrice-cost[0]);
-			for(int j = 1;  j < k; j++){
-                cost[j] = Math.min(cost[j], currPrice - profit[j-1]);
-                profit[j] = Math.max(profit[j], currPrice - cost[j]);
-            }
-       }
-       return profit[k-1];
-   }
+        
+        int n = prices.length;
+        int cap = k; // no of transactions allowed
+        int buy = 1; // can buy or not
+        Integer[][][] dp = new Integer[n][2][k+1];
+        return maxProfit(0, buy, cap, prices, n, dp);
+    }
+    
+    private int maxProfit(int i, int buy, int cap, int[] prices, int n, Integer[][][] dp){
+        
+        if(i == n || cap == 0) return 0;
+        
+        if(dp[i][buy][cap] != null) return dp[i][buy][cap];
+        // if can buy new stack else sell
+        if(buy == 1){
+            return dp[i][buy][cap] = Math.max(-prices[i] + maxProfit(i+1, 0, cap, prices, n, dp)
+                             , 0 + maxProfit(i+1, 1, cap, prices, n, dp));                     
+        }
+        else{
+            return dp[i][buy][cap] = Math.max(prices[i] + maxProfit(i+1, 1, cap-1, prices, n, dp)
+                             , 0 + maxProfit(i+1, 0, cap, prices, n, dp));
+        }
+    }
 }
