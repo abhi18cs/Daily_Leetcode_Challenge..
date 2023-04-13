@@ -22,61 +22,62 @@
 //     }
 // }
 
-
-class Solution {  
-    int[][][]dp;
-    public int maxProfit(int k,int[] prices) {
-       int n = prices.length;
-        dp = new int[n][2][k+1];
+// //Approach-2 USing Recursion+Memoization(TopDownApproach) Tc=O(n*2*k) Sc=O(n*2*k)+O(n)
+// class Solution {  
+//     int[][][]dp;
+//     public int maxProfit(int k,int[] prices) {
+//        int n = prices.length;
+//         dp = new int[n][2][k+1];
          
-        //return solve(0, prices, 1, dp, n, 2);
-         return solve(0,prices,1,dp,n,k);
-    }
+//         //return solve(0, prices, 1, dp, n, 2);
+//          return solve(0,prices,1,dp,n,k);
+//     }
     
-    public int solve(int index,int[] prices,int buy,int[][][] dp,int n,int k){
-        if(index==prices.length) return 0;
-        if(k==0) return 0;
-        if(dp[index][buy][k]!=0) return dp[index][buy][k];
-        int profit=0;
-        //buy=1(Allowed),buy=0(Not allowed)
-        if(buy==1){
-            profit=Math.max(-prices[index]+solve(index+1,prices,0,dp,n,k),
-                            0+solve(index+1,prices,1,dp,n,k));
+//     public int solve(int index,int[] prices,int buy,int[][][] dp,int n,int k){
+//         if(index==prices.length) return 0;
+//         if(k==0) return 0;
+//         if(dp[index][buy][k]!=0) return dp[index][buy][k];
+//         int profit=0;
+//         //buy=1(Allowed),buy=0(Not allowed)
+//         if(buy==1){
+//             profit=Math.max(-prices[index]+solve(index+1,prices,0,dp,n,k),
+//                             0+solve(index+1,prices,1,dp,n,k));
+//         }
+//         else{
+//             profit=Math.max(prices[index]+solve(index+1,prices,1,dp,n,k-1),
+//                             0+solve(index+1,prices,0,dp,n,k));
+//         }
+//         dp[index][buy][k]=profit;
+//         return dp[index][buy][k];
+//     }
+// }
+
+
+//Approach-3 USing Tabulation(BottomUpApproach) Tc=O(n*2*k) Sc=O(n*2*k)+O(n)
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        int n = prices.length;
+        int[][][] dp = new int[n+1][2][k+1];
+        for(int i = n-1; i >= 0; i--){
+            for(int buy = 0; buy < 2; buy++){
+                for(int cap = 1; cap < k+1; cap++){
+                    if(i==prices.length) return 0;
+                      if(k==0) return 0;
+                    if(buy == 1){
+                        dp[i][buy][cap] = Math.max(-prices[i] + dp[i+1][0][cap]
+                                                            , 0 + dp[i+1][1][cap]);                     
+                        }
+                    else{
+                        dp[i][buy][cap] = Math.max(prices[i] + dp[i+1][1][cap-1]
+                                                            , 0 + dp[i+1][0][cap]);
+                    }
+                }
+            }
         }
-        else{
-            profit=Math.max(prices[index]+solve(index+1,prices,1,dp,n,k-1),
-                            0+solve(index+1,prices,0,dp,n,k));
-        }
-        dp[index][buy][k]=profit;
-        return dp[index][buy][k];
+        return dp[0][1][k];
     }
 }
 
-
-
-// class Solution {
-//     int[][][] dp;
-//     public int maxProfit(int c, int[] prices) {
-//         int n = prices.length;
-//         dp = new int[n][2][c+1];  // initialize the 3-dimensional dp array
-        
-//         return find(0, 1, c, prices);
-//     }
-    
-//     private int find(int i, int buy, int c, int[] arr){
-//         if(i == arr.length || c == 0)  return 0;
-// if the result of this subproblem has already been computed, return it
-//         if(dp[i][buy][c] != 0)  return dp[i][buy][c];  
-//         
-        
-//         if(buy == 1){
-// 			return dp[i][buy][c] = Math.max(-arr[i] + find(i+1, 0, c, arr), find(i+1, 1, c, arr));     // Here we have choice to whether choose that element or not, and after that, the part giving maximum profit after buying(be that negative) is taken
-//         }
-//         else{
-//             return dp[i][buy][c] = Math.max(arr[i] + find(i+1, 1, c-1, arr), find(i+1, 0, c, arr));   // Same as above but the only change is that profit added is positive because we are selling this time.
-//         }
-//     }
-// }
 
 //fastest solution
 // class Solution{
