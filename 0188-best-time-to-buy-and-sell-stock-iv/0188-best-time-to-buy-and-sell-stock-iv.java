@@ -54,29 +54,53 @@
 
 
 //Approach-3 USing Tabulation(BottomUpApproach) Tc=O(n*2*k) Sc=O(n*2*k)+O(n)
+// class Solution {
+//     public int maxProfit(int k, int[] prices) {
+//         int n = prices.length;
+//         int[][][] dp = new int[n+1][2][k+1];
+//         for(int i = n-1; i >= 0; i--){
+//             for(int buy = 0; buy < 2; buy++){
+//                 for(int cap = 1; cap < k+1; cap++){
+//                     if(i==n || k==0) return 0;
+//                     if(buy == 1){
+//                         dp[i][buy][cap] = Math.max(-prices[i] + dp[i+1][0][cap]
+//                                                             , 0 + dp[i+1][1][cap]);                     
+//                         }
+//                     else{
+//                         dp[i][buy][cap] = Math.max(prices[i] + dp[i+1][1][cap-1]
+//                                                             , 0 + dp[i+1][0][cap]);
+//                     }
+//                 }
+//             }
+//         }
+//         return dp[0][1][k];
+//     }
+// }
+
+//Approach-4 Using (Space optimiztion) Tc=O(n*2)==O(n) Sc=O(2*3)==O(1)
 class Solution {
-    public int maxProfit(int k, int[] prices) {
+    public int maxProfit(int k,int[] prices) {
         int n = prices.length;
-        int[][][] dp = new int[n+1][2][k+1];
-        for(int i = n-1; i >= 0; i--){
-            for(int buy = 0; buy < 2; buy++){
-                for(int cap = 1; cap < k+1; cap++){
-                    if(i==n || k==0) return 0;
+        int[][] after = new int[2][k+1];
+        int[][] curr = new int[2][k+1];
+        
+        for(int i=n-1; i>=0; i--){
+            for(int buy=0; buy<=1; buy++){
+                for(int c=1; c<=k; c++){
                     if(buy == 1){
-                        dp[i][buy][cap] = Math.max(-prices[i] + dp[i+1][0][cap]
-                                                            , 0 + dp[i+1][1][cap]);                     
-                        }
+						curr[buy][c] = Math.max(-prices[i] + after[0][c], after[1][c]);    // This approach requires O(1) space because we identified that the current state only depends on previous state so its not necessary to store whole 3D array
+					// We only require two 2x3 matrix to store these states
+                    }
                     else{
-                        dp[i][buy][cap] = Math.max(prices[i] + dp[i+1][1][cap-1]
-                                                            , 0 + dp[i+1][0][cap]);
+                        curr[buy][c] = Math.max(prices[i] + after[1][c-1], after[0][c]);
                     }
                 }
             }
+            after = curr;
         }
-        return dp[0][1][k];
+        return curr[1][k];
     }
 }
-
 
 //fastest solution
 // class Solution{
