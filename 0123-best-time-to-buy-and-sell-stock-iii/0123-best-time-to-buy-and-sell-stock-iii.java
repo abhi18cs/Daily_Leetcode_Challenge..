@@ -83,11 +83,7 @@ class Solution {
 }
 
 
-
-
-
-
-// Approach-3 Using (Space optimiztion)
+// Approach-4 Using (Space optimiztion) Tc=O(n*2)==O(n) Sc=O(2*3)==O(1)
 // class Solution {
 //     public int maxProfit(int[] prices) {
 //         int n = prices.length;
@@ -113,26 +109,3 @@ class Solution {
 // }
 
 
-
-// class Solution{
-// public int maxProfit(int[] prices) {
-//     int n = prices.length;
-//     if (n < 2) {
-//         return 0;
-//     }
-    
-//     int[][] buy = new int[3][n];
-//     int[][] sell = new int[3][n];
-    
-//     for (int k = 1; k <= 2; k++) {
-//         buy[k][0] = -prices[0];
-//         sell[k][0] = 0;
-//         for (int i = 1; i < n; i++) {
-//             buy[k][i] = Math.max(buy[k][i-1], sell[k-1][i-1] - prices[i]);
-//             sell[k][i] = Math.max(sell[k][i-1], buy[k][i-1] + prices[i]);
-//         }
-//     }
-    
-//     return sell[2][n-1];
-// }
-// }
