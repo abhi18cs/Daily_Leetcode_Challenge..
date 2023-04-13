@@ -1,62 +1,67 @@
-//Approach-1 Brute Force Tc=O(n2) Sc=O(1)
+//Approach-1 Recursive TLE Tc=O(2^n) Sc=O(n)
 // class Solution{
-//     public int maxProfit(int[] prices) {
-//         int maxProfit = 0;
-//         int n = prices.length;
-
-//         for (int i = 0; i < n; i++) {
-//             int profit1 = maxProfitSingle(prices, 0, i); // Get the max profit for the first half of the array
-//             int profit2 = maxProfitSingle(prices, i + 1, n - 1); // Get the max profit for the second half of the array
-//             int totalProfit = profit1 + profit2; // Calculate the total profit that can be made by buying and selling twice
-//             maxProfit = Math.max(maxProfit, totalProfit); // Update the max profit seen so far
-//         }
-
-//         return maxProfit;
+//     public int maxProfit(int[] prices){
+//         return solve(0,1,prices,2);
 //     }
-
-// public int maxProfitSingle(int[] prices, int start, int end) {
-//     int minPrice = Integer.MAX_VALUE; // Start with the maximum possible value for the minimum price
-//     int maxProfit = 0; // Start with zero profit
-
-//     for (int i = start; i <= end; i++) {
-//         if (prices[i] < minPrice) { // If the current price is lower than the current minimum price, update the minimum price
-//             minPrice = prices[i];
-//         } else if (prices[i] - minPrice > maxProfit) { // If the current price minus the current minimum price is greater than the current max profit, update the max profit
-//             maxProfit = prices[i] - minPrice;
-//         }
-//     }
-
-//     return maxProfit; // Return the max profit that can be made by buying and selling once in the given range of prices
-// }
-// }
-
-
-//Approach-1 USing Recursion+Memoization(TopDownApproach)
-// class Solution {
-//     int[][][] dp;
-    
-//     public int maxProfit(int[] prices) {
-//         int n = prices.length;
-//         dp = new int[n][2][3];  // initialize the 3-dimensional dp array
-        
-//         return find(0, 1, 2, prices);
-//     }
-    
-//     public int find(int i, int buy, int c, int[] arr){
-//         if(i == arr.length || c == 0)  return 0;
-//         if(dp[i][buy][c] != 0)  return dp[i][buy][c];  
-//         // if the result of this subproblem has already been computed, return it
-        
-//         if(buy == 1){
-// 			return dp[i][buy][c] = Math.max(-arr[i] + find(i+1, 0, c, arr), find(i+1, 1, c, arr));     // Here we have choice to whether choose that element or not, and after that, the part giving maximum profit after buying(be that negative) is taken
+//     public int solve(int index,int buy,int[] prices,int limit){
+//         if(index==prices.length) return 0;
+//         if(limit==0) return 0;
+//         int profit=0;
+//         //buy=1(Allowed),buy=0(Not allowed)
+//         if(buy==1){
+//             buy=-prices[index]+solve(index+1,0,prices,limit);
+//             int skip=0+solve(index+1,1,prices,limit);
+//             profit=Math.max(buy,skip);
 //         }
 //         else{
-//             return dp[i][buy][c] = Math.max(arr[i] + find(i+1, 1, c-1, arr), find(i+1, 0, c, arr));   // Same as above but the only change is that profit added is positive because we are selling this time.
+//             int sell=prices[index]+solve(index+1,1,prices,limit-1);
+//             int skip=0+solve(index+1,0,prices,limit);
+//             profit=Math.max(sell,skip);
 //         }
-//     }   
+//         return profit;
+//     }
 // }
 
-//Approach-2 Using (Space optimiztion)
+
+//Approach-2 USing Recursion+Memoization(TopDownApproach) Tc=O(n*2*3) Sc=O(n*2*3)+O(n)
+class Solution {    
+    public int maxProfit(int[] prices) {
+       int n = prices.length;
+        int[][][] dp = new int[n][2][3];
+        for(int i = 0; i<n; i++){
+            for(int j = 0; j<2; j++){
+                Arrays.fill(dp[i][j], -1);      
+            }
+        } 
+        //return solve(0, prices, 1, dp, n, 2);
+         return solve(0,prices,1,dp,n,2);
+    }
+    
+    public int solve(int index,int[] prices,int buy,int[][][] dp,int n,int k){
+        if(index==prices.length) return 0;
+        if(k==0) return 0;
+        if(dp[index][buy][k]!=-1) return dp[index][buy][k];
+        int profit=0;
+        //buy=1(Allowed),buy=0(Not allowed)
+        if(buy==1){
+            profit=Math.max(-prices[index]+solve(index+1,prices,0,dp,n,k),
+                            0+solve(index+1,prices,1,dp,n,k));
+        }
+        else{
+            profit=Math.max(prices[index]+solve(index+1,prices,1,dp,n,k-1),
+                            0+solve(index+1,prices,0,dp,n,k));
+        }
+        dp[index][buy][k]=profit;
+        return dp[index][buy][k];
+    }
+}
+
+
+
+
+
+
+// Approach-3 Using (Space optimiztion)
 // class Solution {
 //     public int maxProfit(int[] prices) {
 //         int n = prices.length;
@@ -83,25 +88,25 @@
 
 
 
-class Solution{
-public int maxProfit(int[] prices) {
-    int n = prices.length;
-    if (n < 2) {
-        return 0;
-    }
+// class Solution{
+// public int maxProfit(int[] prices) {
+//     int n = prices.length;
+//     if (n < 2) {
+//         return 0;
+//     }
     
-    int[][] buy = new int[3][n];
-    int[][] sell = new int[3][n];
+//     int[][] buy = new int[3][n];
+//     int[][] sell = new int[3][n];
     
-    for (int k = 1; k <= 2; k++) {
-        buy[k][0] = -prices[0];
-        sell[k][0] = 0;
-        for (int i = 1; i < n; i++) {
-            buy[k][i] = Math.max(buy[k][i-1], sell[k-1][i-1] - prices[i]);
-            sell[k][i] = Math.max(sell[k][i-1], buy[k][i-1] + prices[i]);
-        }
-    }
+//     for (int k = 1; k <= 2; k++) {
+//         buy[k][0] = -prices[0];
+//         sell[k][0] = 0;
+//         for (int i = 1; i < n; i++) {
+//             buy[k][i] = Math.max(buy[k][i-1], sell[k-1][i-1] - prices[i]);
+//             sell[k][i] = Math.max(sell[k][i-1], buy[k][i-1] + prices[i]);
+//         }
+//     }
     
-    return sell[2][n-1];
-}
-}
+//     return sell[2][n-1];
+// }
+// }
