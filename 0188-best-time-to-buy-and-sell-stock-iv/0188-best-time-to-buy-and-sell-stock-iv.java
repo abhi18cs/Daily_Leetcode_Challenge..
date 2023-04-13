@@ -1,3 +1,25 @@
+class Solution {
+	int maxProfit(int k,int[] prices) {
+	    int n = prices.length;
+		int profit[][] = new int[k + 1][n + 1];
+		for (int i = 0; i <= k; i++) {
+			profit[i][0] = 0;
+		}
+		for (int i = 0; i <= n; i++) {
+			profit[0][i] = 0;
+		}
+		for (int i = 1; i <= k; i++) {
+			for (int j = 1; j < n; j++) {
+				int currMax = Integer.MIN_VALUE;
+				for (int day = 0; day < j; day++) {
+					currMax = Math.max(currMax, prices[j] - prices[day] + profit[i - 1][day]);
+				}
+				profit[i][j] = Math.max(profit[i][j - 1], currMax);
+			}
+		}
+		return profit[k][n - 1];
+	}
+}
 //Approach-1 Recursive TLE Tc=O(2^n) Sc=O(n)
 // class Solution{
 //     public int maxProfit(int k,int[] prices){
@@ -78,29 +100,29 @@
 // }
 
 //Approach-4 Using (Space optimiztion) Tc=O(n*2)==O(n) Sc=O(2*3)==O(1)
-class Solution {
-    public int maxProfit(int k,int[] prices) {
-        int n = prices.length;
-        int[][] after = new int[2][k+1];
-        int[][] curr = new int[2][k+1];
+// class Solution {
+//     public int maxProfit(int k,int[] prices) {
+//         int n = prices.length;
+//         int[][] after = new int[2][k+1];
+//         int[][] curr = new int[2][k+1];
         
-        for(int i=n-1; i>=0; i--){
-            for(int buy=0; buy<=1; buy++){
-                for(int c=1; c<=k; c++){
-                    if(buy == 1){
-						curr[buy][c] = Math.max(-prices[i] + after[0][c], after[1][c]);    // This approach requires O(1) space because we identified that the current state only depends on previous state so its not necessary to store whole 3D array
-					// We only require two 2x3 matrix to store these states
-                    }
-                    else{
-                        curr[buy][c] = Math.max(prices[i] + after[1][c-1], after[0][c]);
-                    }
-                }
-            }
-            after = curr;
-        }
-        return curr[1][k];
-    }
-}
+//         for(int i=n-1; i>=0; i--){
+//             for(int buy=0; buy<=1; buy++){
+//                 for(int c=1; c<=k; c++){
+//                     if(buy == 1){
+// 						curr[buy][c] = Math.max(-prices[i] + after[0][c], after[1][c]);    // This approach requires O(1) space because we identified that the current state only depends on previous state so its not necessary to store whole 3D array
+// 					// We only require two 2x3 matrix to store these states
+//                     }
+//                     else{
+//                         curr[buy][c] = Math.max(prices[i] + after[1][c-1], after[0][c]);
+//                     }
+//                 }
+//             }
+//             after = curr;
+//         }
+//         return curr[1][k];
+//     }
+// }
 
 //fastest solution
 // class Solution{
