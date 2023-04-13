@@ -1,3 +1,4 @@
+//Approach-1 NaiveApproach  Tc=O(n2 * k) Sc=O(n * k)
 class Solution {
 	int maxProfit(int k,int[] prices) {
 	    int n = prices.length;
