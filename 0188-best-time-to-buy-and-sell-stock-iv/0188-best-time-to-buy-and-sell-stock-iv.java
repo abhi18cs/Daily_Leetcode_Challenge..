@@ -61,8 +61,7 @@ class Solution {
         for(int i = n-1; i >= 0; i--){
             for(int buy = 0; buy < 2; buy++){
                 for(int cap = 1; cap < k+1; cap++){
-                    if(i==prices.length) return 0;
-                      if(k==0) return 0;
+                    if(i==n || k==0) return 0;
                     if(buy == 1){
                         dp[i][buy][cap] = Math.max(-prices[i] + dp[i+1][0][cap]
                                                             , 0 + dp[i+1][1][cap]);                     
