@@ -1,3 +1,4 @@
+//same as hashmap https://leetcode.com/problems/design-hashmap/
 class MyHashSet {
     boolean []arr=new boolean[1000001];
     public MyHashSet() {
