@@ -1,24 +1,46 @@
+//https://leetcode.com/problems/next-permutation/discuss/3473399/Beats-100-oror-full-explanationoror-In-steps
 class Solution {
-    public void nextPermutation(int[] A) {
-    if(A == null || A.length <= 1) return;
-    int i = A.length - 2;
-    // Find 1st id i that breaks descending order
-    while(i >= 0 && A[i] >= A[i + 1]) i--; 
-    if(i >= 0) {                // If not entirely descending
-        int j = A.length - 1;  // Start from the end
-        while(A[j] <= A[i]) j--; // Find rightmost first larger id j
-        swap(A, i, j);           // Switch i and j
-    }
-    reverse(A, i + 1, A.length - 1);  // Reverse the descending sequence
-}
+    public void nextPermutation(int[] nums) {
+        int ind1=-1;
+        int ind2=-1;
+        // step 1 find breaking point 
+        for(int i=nums.length-2;i>=0;i--){
+            if(nums[i]<nums[i+1]){
+                ind1=i;
+                break;
+            }
+        }
+        // if there is no breaking  point 
+        if(ind1==-1){
+            reverse(nums,0);
+        }
+        
+        else{
+            // step 2 find next greater element and swap with ind2
+            for(int i=nums.length-1;i>=0;i--){
+                if(nums[i]>nums[ind1]){
+                    ind2=i;
+                    break;
+                }
+            }
 
-    public void swap(int[] A, int i, int j) {
-        int tmp = A[i];
-        A[i] = A[j];
-        A[j] = tmp;
+            swap(nums,ind1,ind2);
+            // step 3 reverse the rest right half
+            reverse(nums,ind1+1);
+        }
     }
-
-    public void reverse(int[] A, int i, int j) {
-        while(i < j) swap(A, i++, j--);
+    void swap(int[] nums,int i,int j){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+    void reverse(int[] nums,int start){
+        int i=start;
+        int j=nums.length-1;
+        while(i<j){
+            swap(nums,i,j);
+            i++;
+            j--;
+        }
     }
 }
