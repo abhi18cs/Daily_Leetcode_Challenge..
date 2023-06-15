@@ -1,4 +1,4 @@
-//Brute Force TC=O(nlogn+n) SC=O(1)
+//Brute Force Using Sorting TC=O(nlogn+n) SC=O(1)
 class Solution{
     public int findDuplicate(int[] nums){
         Arrays.sort(nums);
@@ -6,10 +6,11 @@ class Solution{
             if(nums[i]==nums[i+1])
                 return nums[i];
         }
-        return 0;
+        return -1;
     }
 }
-// TC=O(n) SC=O(n) using hashmap
+
+//Better Approach Tc=O(n) Sc=O(n) using hashmap
 // class Solution {
 //     public int findDuplicate(int[] nums) {
 //         HashMap<Integer,Integer> map=new HashMap<>();
