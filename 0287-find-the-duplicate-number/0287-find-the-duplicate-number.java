@@ -1,3 +1,14 @@
+//Brute Force TC=O(nlogn+n) SC=O(1)
+class Solution{
+    public int findDuplicate(int[] nums){
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==nums[i+1])
+                return nums[i];
+        }
+        return 0;
+    }
+}
 // TC=O(n) SC=O(n) using hashmap
 // class Solution {
 //     public int findDuplicate(int[] nums) {
@@ -21,17 +32,17 @@
 // }
 
 // TC=O(N) SC=O(1) Visited
-class Solution{
-    public static int findDuplicate(int[] nums) {
-        int len = nums.length;
-        for (int num : nums) {
-            int idx = Math.abs(num);
-            if (nums[idx] < 0) {
-                return idx;
-            }
-            nums[idx] = -nums[idx];
-        }
+// class Solution{
+//     public static int findDuplicate(int[] nums) {
+//         int len = nums.length;
+//         for (int num : nums) {
+//             int idx = Math.abs(num);
+//             if (nums[idx] < 0) {
+//                 return idx;
+//             }
+//             nums[idx] = -nums[idx];
+//         }
 
-        return len;
-    }
-}
+//         return len;
+//     }
+// }
