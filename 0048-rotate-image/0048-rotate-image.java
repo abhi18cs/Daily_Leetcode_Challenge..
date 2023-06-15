@@ -19,7 +19,7 @@
 //     }
 // }
 
-//Optimal Approach Tc=O(n*n) Sc=O()
+//Optimal Approach Tc=O(N*N) + O(N*N).One O(N*N) is for transposing the matrix and the other is for reversing the matrix. S=O(1).
 class Solution {
     public void rotate(int[][] matrix) {
         //in this que for clockwise we do column reverse and for anticlockwise row reverse now after reversing we do the transpose of the matrix
@@ -32,6 +32,7 @@ class Solution {
                 matrix[j][i] = temp;
             }
         }
+        //2. Reversing the matrix
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length / 2; j++) {
                 int temp = 0;
@@ -41,4 +42,4 @@ class Solution {
             }
         }
     }
-    }
+}
