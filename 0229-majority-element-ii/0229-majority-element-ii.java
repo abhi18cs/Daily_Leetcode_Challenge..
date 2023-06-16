@@ -26,7 +26,7 @@ class Solution{
     }
 }
 
-  //tc=O(n) sc=O(n)
+//Beeter Appraoch Using hashing tc=O(n*logn) sc=O(n)
 // class Solution {
 //     public List<Integer> majorityElement(int[] arr) {
 //        	HashMap<Integer,Integer> cntMap = new HashMap<>();
@@ -42,7 +42,7 @@ class Solution{
 //     }
 // }
 
-//tc=O(n) sc=O(1)Boyer Moore Voting Algorithm
+//Best/Optimal Appraoch USing Boyer Moore Voting Algorithm Tc=O(n) Sc=O(1)
 // class Solution {
 //     public List<Integer> majorityElement(int[] arr) {
 //     int ans1 = -1, ans2 =-1, cnt1 = 0,cnt2 = 0;
