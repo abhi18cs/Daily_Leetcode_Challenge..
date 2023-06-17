@@ -17,7 +17,7 @@
 //     }
 // }
 
-//Approach-2 Better Approach Usnig 2 pointers Tc=O(n2) Sc=O(n)
+//Approach-2 Better Approach Usnig 2 pointers Tc=O(n) Sc=O(n)
 class Solution {
     public int lengthOfLongestSubstring(String s) {
        if(s.length()==0) return 0;
@@ -36,7 +36,7 @@ class Solution {
 }
 
 
-//appraoch-2 using hashset tc=O(n),sc=O(n) 
+//Appraoch-3 Using Hashset Tc=O(n) Sc=O(n) 
 //Sliding windows with hashet check duplicated character
 // class Solution {
 //     public int lengthOfLongestSubstring(String s) {
