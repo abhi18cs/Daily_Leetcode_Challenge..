@@ -1,4 +1,4 @@
-//Brute Force tc=O(nlogn) sc=O(1)
+//Approach-1 Brute Force Tc=O(nlogn) Sc=O(1)
 // class Solution {
 //     public int longestConsecutive(int[] nums) {
 //         if (nums.length==0) return 0;
@@ -8,8 +8,8 @@
 //         for(int i=0;i<nums.length-1;i++){
 //             if(nums[i]==nums[i+1]) continue;
 //             if(nums[i]==nums[i+1]-1){
-//             count++;
-//             max=Math.max(max,count);
+//              count++;
+//              max=Math.max(max,count);
 //             }
 //             else count=1;
 //         }
@@ -17,7 +17,7 @@
 //     }
 // }
 
-//Optimized Approach tc=O(n) sc=O(n)
+//Approach-2 Optimized Approach Tc=O(n) Sc=O(n)
 // class Solution {
 //     public int longestConsecutive(int[] nums) {
 //         //intialize the hashset and store all the elemnts in that
@@ -34,7 +34,6 @@
 //                     currElement++;
 //                     currSequence++;
 //                 }
-            
 //         longestSequence=Math.max(currSequence,longestSequence);
 //             }
 //         }
