@@ -17,15 +17,28 @@
 // }
 
 //Aproach-2 RecursiveMethod Tc=O(n) Sc=O(1)
+// class Solution {
+//     public ListNode reverseList(ListNode head) {
+//         ListNode newHead = null;
+//         while (head != null) {
+//             ListNode next = head.next;
+//             head.next = newHead;
+//             newHead = head;
+//             head = next;
+//         }
+//         return newHead;
+//     }
+// }
+
+//Aproach-3 Using Recursion Tc=O(n) Sc=O(1)
 class Solution {
     public ListNode reverseList(ListNode head) {
-        ListNode newHead = null;
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = newHead;
-            newHead = head;
-            head = next;
-        }
-        return newHead;
+        if (head == null||head.next==null)
+            return head;
+
+        ListNode newnode = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newnode;
     }
 }
