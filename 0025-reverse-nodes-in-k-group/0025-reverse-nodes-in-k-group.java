@@ -1,9 +1,8 @@
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode mainCurr = head;
-        
-		/*
-            Intuition 
+        /*
+        Intuition 
             a. if K or more nodes available in given list
                  1. reverse first k node,
                  2. remove from the main list
@@ -14,14 +13,10 @@ class Solution {
                  1. just append the Remaining nodes in new list
         
         */
-            
-        
-        
         //dummy nodes, places holder of head 
         //reverse linked list
         ListNode dummyNode = new ListNode();
         ListNode newCurr = dummyNode;
-        
         while(mainCurr != null){
             ListNode curr = mainCurr;
             
@@ -33,7 +28,6 @@ class Solution {
                 availableNode++;
             }
             ListNode nextGroupFirstNode = curr;
-            
             //if Available node is K, then reverse and add in newNode list
             //otherwise just append remaining node
             if(availableNode == k){
@@ -42,32 +36,22 @@ class Solution {
             }else{
                 newCurr.next = mainCurr;
             }
-            
             //move to next group
             mainCurr = nextGroupFirstNode;
         }
-        
         return dummyNode.next;
     }
-    
-
     //reverse K first node, and 
     //return the head of K node list
     private ListNode getReverseFirstKNodes(ListNode node, int k){
         ListNode prev = null;
         ListNode curr = node;
-        
         while(curr != null && k --> 0){
             ListNode next = curr.next;
-            
             curr.next = prev;
             prev = curr;
-            
             curr = next;
         }
-
         return prev;
     }
-
-    
 }
