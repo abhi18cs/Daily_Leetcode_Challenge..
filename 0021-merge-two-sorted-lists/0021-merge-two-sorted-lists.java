@@ -1,3 +1,5 @@
+//Approach Using Recursion Tc=O(n+m) [Let N be the number of nodes in list l1 and M be the number of nodes in list l2. We have to iterate through both lists. So, the total time complexity is O(N+M)]
+//Sc=O(n+m)[We are creating another linked list that contains the (N+M) number of nodes in the list. So, space complexity is O(N+M).]
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode head=null;
