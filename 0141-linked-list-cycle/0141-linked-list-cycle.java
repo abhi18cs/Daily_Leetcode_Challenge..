@@ -1,18 +1,17 @@
+//Appraoch-1 Using HashSet Tc=O(n) Sc=O(n) n=size of the list
 class Solution {
     public boolean hasCycle(ListNode head) {
-        HashSet <ListNode> hashTable=new HashSet<>();
+        HashSet <ListNode> hs=new HashSet<>();
         while(head != null) {
-            if(hashTable.contains(head)) return true;
-            hashTable.add(head);
+            if(hs.contains(head)) return true;
+            hs.add(head);
             head = head.next;
         }
         return false;
     }
 }
 
-
-
-//tc=O(n) sc=O(1)
+//Appraoch-2 Using slow and fast pointer Tc=O(n) Sc=O(1) n=size of the list
 // class Solution {
 //     public boolean hasCycle(ListNode head) {
 //         if(head==null || head.next==null) return false;
@@ -21,7 +20,6 @@ class Solution {
 //         while(fast!=null && fast.next!=null){
 //            slow=slow.next;
 //            fast=fast.next.next;
-        
 //         if(slow==fast) return true;
 //         }
 //         return false;
