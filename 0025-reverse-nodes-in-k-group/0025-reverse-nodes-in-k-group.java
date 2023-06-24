@@ -1,8 +1,5 @@
-class Solution {
-    public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode mainCurr = head;
-        /*
-        Intuition 
+//Approach Tc=O(n) Sc=O(1)
+      /*  Intuition 
             a. if K or more nodes available in given list
                  1. reverse first k node,
                  2. remove from the main list
@@ -13,6 +10,9 @@ class Solution {
                  1. just append the Remaining nodes in new list
         
         */
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        ListNode mainCurr = head;
         //dummy nodes, places holder of head 
         //reverse linked list
         ListNode dummyNode = new ListNode();
