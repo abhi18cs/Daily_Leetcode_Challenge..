@@ -1,19 +1,9 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-//Approach-1 Add 2 ll tc=O(max(N, M)) where N is length of l1 & M is length of 0l2 Sc=O(max(N,M))
+//Approach-1 Add 2 ll tc=O(max(N, M)) where N is length of l1 & M is length of 0f l2 Sc=O(max(N,M))
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0); // creating an dummy list
         ListNode curr = dummy; // intialising an pointer
-        int carry = 0; // intialising our carry with 0 intiall
+        int carry = 0; // initialising our carry with 0 
         // while loop will run, until l1 OR l2 not reaches null OR if they both reaches null. But our carry has some value in it. 
 		// We will add that as well into our list
         while(l1 != null || l2 != null || carry == 1){
