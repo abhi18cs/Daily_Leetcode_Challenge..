@@ -57,21 +57,21 @@ class Driver
     
 // }
 //Method-3 Using StringBuffer
-class Reverse
-{
-    // Complete the function
-    // str: input string
-    public static String reverseWord(String str)
-    {
-        // Reverse the string str
-        StringBuffer sb=new StringBuffer(str);
-        sb.reverse();
-        return sb.toString();
-    }
+// class Reverse
+// {
+//     // Complete the function
+//     // str: input string
+//     public static String reverseWord(String str)
+//     {
+//         // Reverse the string str
+//         StringBuffer sb=new StringBuffer(str);
+//         sb.reverse();
+//         return sb.toString();
+//     }
     
-}
+// }
 
-//Method-3 Using StringBuffer
+//Method-4 Using Conversion of String in to char 
 class Reverse
 {
     // Complete the function
@@ -79,9 +79,13 @@ class Reverse
     public static String reverseWord(String str)
     {
         // Reverse the string str
-        StringBuffer sb=new StringBuffer(str);
-        sb.reverse();
-        return sb.toString();
+        char []ch= str.toCharArray();
+        char[] ans=new char[str.length()];
+        for(int i=ch.length-1;i>=0;i--){
+            ans[ch.length-1-i]= ch[i];
+        }
+       String stri=new String(ans);
+       return stri;
     }
     
 }
