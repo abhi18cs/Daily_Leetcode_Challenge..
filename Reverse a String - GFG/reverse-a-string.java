@@ -24,7 +24,7 @@ class Driver
 
 //User function Template for Java
 
-//Method-1 
+//Method-1 Using Traversing 
 // class Reverse
 // {
 //     // Complete the function
@@ -41,7 +41,22 @@ class Driver
 //         return ans;
 //     }
 // }
-//Method
+//Method-2 USing String Builder
+// class Reverse
+// {
+//     // Complete the function
+//     // str: input string
+//     public static String reverseWord(String str)
+//     {
+//         // Reverse the string str
+//         StringBuilder sb=new StringBuilder();
+//         sb.append(str);
+//         sb.reverse();
+//         return sb.toString();
+//     }
+    
+// }
+//Method-3 Using StringBuffer
 class Reverse
 {
     // Complete the function
@@ -49,15 +64,27 @@ class Reverse
     public static String reverseWord(String str)
     {
         // Reverse the string str
-        StringBuilder sb=new StringBuilder();
-        sb.append(str);
+        StringBuffer sb=new StringBuffer(str);
         sb.reverse();
         return sb.toString();
     }
     
 }
 
-
+//Method-3 Using StringBuffer
+class Reverse
+{
+    // Complete the function
+    // str: input string
+    public static String reverseWord(String str)
+    {
+        // Reverse the string str
+        StringBuffer sb=new StringBuffer(str);
+        sb.reverse();
+        return sb.toString();
+    }
+    
+}
 
 
 
