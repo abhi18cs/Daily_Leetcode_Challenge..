@@ -41,20 +41,31 @@ class Driver
 //         return ans;
 //     }
 // }
-
+//Method
 class Reverse
-// {
-//     // Complete the function
-//     // str: input string
-//     public static String reverseWord(String str)
-//     {
-//         // Reverse the string str
-//         String ans="";
-//         char ch;
-//         for(int i=0;i<str.length();i++){
-//             ch=str.charAt(i);
-//             ans=ch+ans;
-//         }
-//         return ans;
-//     }
-// }
+{
+    // Complete the function
+    // str: input string
+    public static String reverseWord(String str)
+    {
+        // Reverse the string str
+        StringBuilder sb=new StringBuilder();
+        sb.append(str);
+        sb.reverse();
+        return sb.toString();
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
